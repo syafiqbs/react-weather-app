@@ -28,14 +28,56 @@ function App() {
     ],
   };
 
+  // Local data
+  /* useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const urls = [
+          'http://localhost:3030/relative-humidity',
+          'http://localhost:3030/min-temperature',
+          'http://localhost:3030/max-temperature',
+          'http://localhost:3030/direct-radiation'
+        ];
+
+        const [humidityResponse, minTemperatureResponse, maxTemperatureResponse, directRadiationResponse] = await Promise.all
+          (urls.map(url => axios.get(url))
+        );
+
+        if (humidityResponse) {
+          const dailyHumidity = calculateAverageDailyValues(humidityResponse.data.map((item: { humidity: any; }) => item.humidity));
+          setHumidityData(dailyHumidity);
+        }
+
+        if (minTemperatureResponse && maxTemperatureResponse) {
+          const minTemperature = minTemperatureResponse.data.map((item: { temperature: any; }) => item.temperature);
+          const maxTemperature = maxTemperatureResponse.data.map((item: { temperature: any; }) => item.temperature);
+          setMinTemperature(minTemperature);
+          setMaxTemperature(maxTemperature);
+        }
+
+        if (directRadiationResponse) {
+          const directRadiation = calculateAverageDailyValues(directRadiationResponse.data.map((item: { radiation: any; }) => item.radiation));
+          setDirectRadiation(directRadiation);
+        }
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); */
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Call API
         const response = await axios.get(API_URL);
+        const localRespose = await axios.get('http://localhost:3030/relative-humidity');
         // Handle response
         if (response) {
 
+          console.log(localRespose);
           // Column Chart: Average Daily Humidity
           const dailyHumidity = calculateAverageDailyValues(response.data.hourly.relativehumidity_2m);
           setHumidityData(dailyHumidity);
