@@ -108,20 +108,20 @@ function App() {
   } : null;
 
   return (
-    <div className="App">
-      <h1 className="text-3xl underline text-center">Weather App</h1>
-      <div className="container mx-auto w-1/2">
+    <div className="flex flex-col justify-center items-center">
+      <div className="w-full lg:w-3/4 sm-1 bg-white overflow-auto">
+        {/* Column Chart for Relative Humidity */}
         {columnChartData && <ColumnChart data={columnChartData} />}
-      </div>
-      <div className="container mx-auto w-1/2">
+
+        {/* Line Chart for Temperature (Max and Min) */}
         {lineChartData && <LineChart data={lineChartData} />}
-      </div>
-      <div className="container mx-auto w-1/2">
+
+        {/* Area Chart for Direct Radiation */}
         {areaChartData && <AreaChart data={areaChartData} />}
       </div>
-        
     </div>
   );
+
 }
 
 export default App;
