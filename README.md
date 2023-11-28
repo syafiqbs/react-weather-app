@@ -53,17 +53,20 @@ const db = mysql.createConnection({
 
 ## Running the Weather-App
 
-Before running the weather-app, make sure the backend server is running. Follow these steps:
-```
-cd backend
-npm start
-```
-
+The weather-app can run independently without the backend. 
 After the backend server is up and running, you can start the weather-app:
 ```
 cd weather-app
 npm start
 ```
+
+If you want to test the local database functionality, make sure the backend server is running. Open another terminal:
+```
+cd backend
+npm start
+```
+
+
 
 
 
