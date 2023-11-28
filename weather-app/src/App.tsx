@@ -16,18 +16,7 @@ function App() {
   const [minTemperature, setMinTemperature] = useState<any>(null);
   const [maxTemperature, setMaxTemperature] = useState<any>(null);
   const [directRadiation, setDirectRadiation] = useState<any>(null);
-
-  const fixedData = {
-    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
-    datasets: [
-      {
-        fill: true,
-        label: 'min humidity',
-        data: [50, 60, 70, 80, 90],
-      }
-    ],
-  };
-
+  
   // Local data
   /* useEffect(() => {
     const fetchData = async () => {
@@ -73,11 +62,9 @@ function App() {
       try {
         // Call API
         const response = await axios.get(API_URL);
-        const localRespose = await axios.get('http://localhost:3030/relative-humidity');
+
         // Handle response
         if (response) {
-
-          console.log(localRespose);
           // Column Chart: Average Daily Humidity
           const dailyHumidity = calculateAverageDailyValues(response.data.hourly.relativehumidity_2m);
           setHumidityData(dailyHumidity);

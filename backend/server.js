@@ -19,28 +19,52 @@ app.get('/', (re, res) => {
 app.get('/relative-humidity', (req, res) => {
     const statement = "SELECT * FROM relative_humidity";
     db.query(statement, (err, result) => {
-        return res.json(result);
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching relative humidity' });
+        }
+        else {
+            return res.json(result);
+        }
     });
 });
 
 app.get('/min-temperature', (req, res) => {
     const statement = "SELECT * FROM daily_temperature WHERE type = 'min'";
     db.query(statement, (err, result) => {
-        return res.json(result);
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching min temperature' });
+        }
+        else {
+            return res.json(result);
+        }
     });
 });
 
 app.get('/max-temperature', (req, res) => {
     const statement = "SELECT * FROM daily_temperature WHERE type = 'max'";
     db.query(statement, (err, result) => {
-        return res.json(result);
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching max temperature' });
+        }
+        else {
+            return res.json(result);
+        }
     });
 });
 
 app.get('/direct-radiation', (req, res) => {
     const statement = "SELECT * FROM direct_radiation";
     db.query(statement, (err, result) => {
-        return res.json(result);
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching direct radiation' });
+        }
+        else {
+            return res.json(result);
+        }
     });
 });
 
